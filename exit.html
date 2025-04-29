@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Cake with Mic Blow</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffe0e9; /* light pink */
+            overflow: hidden;
+        }
+
+        #birthday-cake {
+            position: relative;
+            top: 50px;
+            left: 0;
+        }
+
+        #birthday-cake:before {
+            content: "";
+            position: absolute;
+            background-color: #ffffff;
+            width: 400px;
+            height: 140px;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -10%);
+            box-shadow: inset -2px -5px #f5f5dc; /* beige shadow */
+        }
+
+        .cake {
+            position: absolute;
+            background-color: #ffb5c1; /* pink */
+            width: 350px;
+            height: 130px;
+            transform: translate(-50%, -60%);
+        }
+
+        .cake:before, .cake:after {
+            content: "";
+            position: absolute;
+        }
+
+        .cake:before, .middle, .middle:before {
+            border-radius: 50% 50% 50% 50% / 0% 0% 100% 100%;
+            width: 350px;
+            height: 50px;
+        }
+
+        .cake:before {
+            background-color: #ffb5c1;
+            top: 130px;
+        }
+
+        .cake:after {
+            background-color: #f5f5dc; /* beige */
+            width: 350px;
+            height: 30px;
+            top: 50px;
+        }
+
+        .middle {
+            position: absolute;
+            background-color: #f5f5dc;
+            top: 80px;
+            z-index: 1;
+        }
+
+        .middle:before {
+            content: "";
+            position: absolute;
+            background-color: #ffb5c1;
+            top: -35px;
+        }
+
+        .top {
+            position: absolute;
+            background-color: #f08080; /* darker pink */
+            width: 350px;
+            height: 90px;
+            border-radius: 50%;
+            z-index: 2;
+            top: -45px;
+            box-shadow: inset -5px -1px #fff, inset -70px 2px rgba(255, 255, 255, .1);
+        }
+
+        .chocs {
+            position: absolute;
+            width: 55px;
+            height: 50px;
+            background-color: #f08080;
+            top: 0;
+            z-index: 1;
+            border-radius: 50% 50% 50% 50% / 0% 0% 100% 100%;
+            box-shadow: 49px 20px #f08080, 98px 25px #f08080, 147px 30px #f08080,
+                196px 25px #f08080, 245px 20px #f08080, 295px 0 #f08080,
+                0px 4px #fff, 49px 24px #fff, 98px 29px #fff,
+                147px 34px #fff, 196px 29px #fff, 245px 24px #fff, 295px 4px #fff;
+        }
+
+        .candles {
+            position: absolute;
+            width: 30px;
+            height: 80px;
+            background-color: #f5f5dc; /* beige */
+            top: -160px;
+            left: -20px;
+            box-shadow: 50px 20px #f5f5dc, -50px 20px #f5f5dc;
+        }
+
+        .candles:before {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 10px;
+            background-color: #f5f5dc;
+            border-radius: 50%;
+            top: -5px;
+            box-shadow: 0 80px #f5f5dc, -50px 20px #f5f5dc, -50px 100px #f5f5dc,
+                50px 20px #f5f5dc, 50px 100px #f5f5dc, inset 2px -1px #fff;
+        }
+
+        .flame, .flame:before, .flame2, .flame2:before, .flame3, .flame3:before {
+            position: absolute;
+            border-radius: 80% 15% 55% 50% / 55% 15% 80% 50%;
+        }
+
+        .flame, .flame2, .flame3 {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            transform: rotate(-45deg);
+            z-index: 4;
+            background-color: rgba(252, 191, 73, .8);
+            transition: .5s;
+            animation: flame .5s infinite;
+        }
+
+        .flame {
+            top: -40px;
+        }
+
+        .flame2, .flame3 {
+            top: -20px;
+        }
+
+        .flame2 {
+            left: -50px;
+        }
+
+        .flame3 {
+            left: 50px;
+        }
+
+        .flame:before, .flame2:before, .flame3:before {
+            content: "";
+            background-color: rgba(247, 127, 0, .4);
+            width: 20px;
+            height: 20px;
+            top: 5px;
+            left: 5px;
+        }
+
+        @keyframes flame {
+            0%, 25%, 100% { transform: scaleY(1) rotate(-45deg); }
+            50%, 75% { transform: scaleY(1.1) rotate(-45deg); }
+        }
+
+        .text, .text2 {
+            position: absolute;
+            color: white;
+            font-family: 'Brush Script MT', cursive;
+            text-align: center;
+        }
+
+        .text {
+            width: 350px;
+            font-size: 50px;
+            left: -140px;
+            top: 100px;
+            z-index: -1;
+            transition: .3s;
+            opacity: 0;
+        }
+
+        .text2 {
+            font-size: 25px;
+            width: 300px;
+            top: 105px;
+            left: -140px;
+        }
+    </style>
+</head>
+<body>
+    <div id="birthday-cake">
+        <div class="cake">
+            <div class="middle"></div>
+            <div class="chocs"></div>
+            <div class="top"></div>
+        </div>
+        <div class="candles">
+            <div class="flame"></div>
+            <div class="flame2"></div>
+            <div class="flame3"></div>
+            <div class="text">Happy Birthday!</div>
+        </div>
+        <p class="text2">blow into the mic to blow candles</p>
+    </div>
+    <script>
+        // Basic microphone blow detection
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(function(stream) {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const mic = audioContext.createMediaStreamSource(stream);
+                const analyser = audioContext.createAnalyser();
+                mic.connect(analyser);
+                analyser.fftSize = 256;
+                const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+                function detectBlow() {
+                    analyser.getByteFrequencyData(dataArray);
+                    const volume = dataArray.reduce((a, b) => a + b) / dataArray.length;
+                    if (volume > 50) {
+                        document.querySelectorAll('.flame, .flame2, .flame3').forEach(f => f.style.opacity = 0);
+                        document.querySelector('.text').style.opacity = 1;
+                        document.querySelector('.text').style.top = '-90px';
+                    }
+                    requestAnimationFrame(detectBlow);
+                }
+
+                detectBlow();
+            })
+            .catch(function(err) {
+                console.error('Microphone access denied:', err);
+            });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+  function burstConfetti() {
+    confetti({
+      origin: { x: 0, y: 0.5 },
+      angle: 60, 
+      spread: 55,
+      particleCount: 50,
+      startVelocity: 45
+    });
+
+    confetti({
+      origin: { x: 1, y: 0.5 },
+      angle: 120,
+      spread: 55,
+      particleCount: 50,
+      startVelocity: 45
+    });
+  }
+
+  window.onload = burstConfetti;
+</script>
+</body>
+</html>

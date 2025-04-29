@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <title>MY GIFT</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="home.html"><img src="images/logo2.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="nextpage.html">ABOUT</a></li>
+                    <li><a href="relics.html">RELICS</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+
+    <div class="text-box">
+        <h1>Welcome to Inshen & Insu Gallery</h1>
+        <p></table></p>
+    </div>
+</section>
+<section class="about-me">
+    <div class="row">
+        <div class="about-col">
+            <h1>Synopsis</h1>
+            <ul id="synopsis"> 
+            <p>This website is dedicated to the most amazing twins, as we celebrate the incredible milestone of turning 18! It’s a tribute to everything that makes you two unique and unforgettable, from the laughter, adventures, and the unbreakable bond you share, to all the memories we’ve created together.</p>
+            <p>The purpose of this website is to reflect on the beautiful journey you’ve had, look back at the moments we’ve shared, and send you love and good wishes as you step into adulthood. Here, you’ll find heartfelt messages, precious memories, and a special video to celebrate your unique bond.</p>
+            <p>This is just a small way to show you how much you’re loved and appreciated. Happy 18th, i love you guys <3
+                𐙚 ‧₊˚ </p>
+            </ul>
+            <button class="btn" onclick="readTextAloud()">Read</button>
+            <button class="btn" onclick="stopSpeech()">Stop Reading</button>
+                <div class="about-col">
+                    <img src="images/img6.jpg" alt="">
+                </div>
+
+            <a href="relics.html" class="hero-btn pink-btn">EXPLORE NOW</a>
+        </div>
+    </div>
+
+</section>
+
+<script>
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu(){
+        navLinks.style.right = "0";
+    }
+    function hideMenu(){
+        navLinks.style.right = "-200px"; 
+    }
+
+
+    let speechInstance;
+
+
+function readTextAloud() {
+    const synopsis = document.getElementById("synopsis");
+    const items = synopsis.getElementsByTagName("p");
+
+    
+    let textToRead = "synopsis: ";
+    for (let i = 0; i < items.length; i++) {
+        textToRead += items[i].textContent + ". ";
+    }
+
+    
+    speechInstance = new SpeechSynthesisUtterance(textToRead);
+    speechInstance.lang = 'en-US';
+    speechSynthesis.speak(speechInstance);
+}
+
+ speechInstance.onend = function() {
+            console.log("Speech finished automatically.");
+        }
+
+function stopSpeech() {
+    speechSynthesis.cancel();
+}
+</script>
+</body>
+</html>
